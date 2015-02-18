@@ -7,6 +7,13 @@ gem 'rails', '4.2.0'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'slim-rails'
+gem 'bootstrap-sass', '~> 3.3.3'
+# Use table_cloth for isntant tables
+gem 'table_cloth'
+gem 'devise'
+
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -35,7 +42,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
+  gem 'byebug'
   gem 'pry-rails'
+  gem 'minitest-rails'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
