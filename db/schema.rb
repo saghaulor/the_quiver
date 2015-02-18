@@ -11,16 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208203729) do
+ActiveRecord::Schema.define(version: 20150217002352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "archery_ends", force: :cascade do |t|
-    t.integer  "shoot_id"
-    t.string   "type"
+  create_table "round_ends", force: :cascade do |t|
+    t.integer  "round_id"
     t.integer  "distance"
-    t.integer  "uom"
+    t.integer  "uom_id",     default: 1
     t.string   "shots",      default: [],                 array: true
     t.integer  "score"
     t.boolean  "mulligan",   default: false
@@ -29,18 +28,24 @@ ActiveRecord::Schema.define(version: 20150208203729) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "archery_ends", ["shoot_id"], name: "index_archery_ends_on_shoot_id", using: :btree
+  add_index "round_ends", ["round_id"], name: "index_round_ends_on_round_id", using: :btree
+  add_index "round_ends", ["uom_id"], name: "index_round_ends_on_uom_id", using: :btree
 
-  create_table "shoots", force: :cascade do |t|
+  create_table "rounds", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.string   "type"
     t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "shoots", ["user_id"], name: "index_shoots_on_user_id", using: :btree
+  add_index "rounds", ["user_id"], name: "index_rounds_on_user_id", using: :btree
+
+  create_table "uoms", force: :cascade do |t|
+    t.string   "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "last_name"
