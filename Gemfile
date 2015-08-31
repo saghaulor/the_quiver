@@ -4,10 +4,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2'
 gem 'rails-api'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '0.10.0.rc2'
 # Use postgres as the database for Active Record
 gem 'pg'
-gem 'devise'
+gem "schema_plus_enums"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -25,6 +25,7 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'database_cleaner'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'byebug'
@@ -35,8 +36,7 @@ group :development, :test do
   gem 'ruby-prof'
   gem 'ruby_gntp'
   gem 'simplecov', require: false
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'brakeman'
+  gem 'guard-brakeman'
+  gem 'guard-bundler-audit'
 end
-
