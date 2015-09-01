@@ -19,6 +19,10 @@ module API
         end
       end
 
+      def show
+        render json: round_end, status: 200
+      end
+
       def update
         if round_end_params.present? && round_end.update(round_end_params)
           render json: round_end, status: 200

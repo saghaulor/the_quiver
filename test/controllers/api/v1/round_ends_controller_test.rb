@@ -24,6 +24,12 @@ module API
         assert_response 403
       end
 
+      test "should show the round_end" do
+        request_params = { id: @round_end.id }
+        get :show, request_params, request_headers
+        assert_response :success
+      end
+
       test "should update the round_end" do
         request_params = { id: @round_end.id, shots: %w(10 10 10 10 10 10),
                            distance: 40, uom: 'm'

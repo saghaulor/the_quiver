@@ -48,9 +48,9 @@ class RoundEndsTest < ActionDispatch::IntegrationTest
   private
   def setup
     DatabaseCleaner.start
-    @round_end_1 = RoundEnd.create(shots: %w(0 0 0 0 0 0), distance: 60,
+    @round_end_1 ||= RoundEnd.create(shots: %w(0 0 0 0 0 0), distance: 60,
                                    uom: 'yd', round_id: 1)
-    @round_end_2 = RoundEnd.create(shots: %w(0 0 0 0 0 0), distance: 50,
+    @round_end_2 ||= RoundEnd.create(shots: %w(0 0 0 0 0 0), distance: 50,
                                    uom: 'm', round_id: 2)
   end
 
