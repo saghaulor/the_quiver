@@ -50,7 +50,7 @@ module API
       end
 
       private
-     def setup
+      def setup
         DatabaseCleaner.start
         @round ||= Round.create(name: 'RoundsControllerTest')
       end
