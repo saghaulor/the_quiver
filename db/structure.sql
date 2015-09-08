@@ -63,14 +63,14 @@ CREATE TABLE round_ends (
     id integer NOT NULL,
     round_id integer,
     distance integer,
-    size smallint,
+    uom uom DEFAULT 'yd'::uom,
+    max_shots_count smallint,
     shots character varying[] DEFAULT '{}'::character varying[],
     score integer,
     mulligan boolean DEFAULT false,
     x_count integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    uom uom DEFAULT 'yd'::uom
+    updated_at timestamp without time zone NOT NULL
 );
 
 

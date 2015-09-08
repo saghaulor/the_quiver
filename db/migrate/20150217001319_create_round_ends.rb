@@ -3,7 +3,7 @@ class CreateRoundEnds < ActiveRecord::Migration
     create_table :round_ends do |t|
       t.belongs_to :round, index: true
       t.integer :distance
-      t.integer :size, limit: 2
+      t.integer :max_shots_count, limit: 2
       t.string :shots, array: true, default: []
       t.integer :score
       t.boolean :mulligan, default: false

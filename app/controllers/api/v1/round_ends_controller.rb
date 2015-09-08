@@ -42,7 +42,7 @@ module API
       end
 
       def round_end_params
-        params.permit(:shots, :distance, :uom, :size, :mulligan)
+        params.permit(:shots, :distance, :uom, :max_shots_count, :mulligan)
       end
     end
   end
