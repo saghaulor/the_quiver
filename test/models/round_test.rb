@@ -1,17 +1,22 @@
 require 'test_helper'
 
 class RoundTest < ActiveSupport::TestCase
+  test "round_is_invalid_when_name_is_missing" do
+    round = Round.new
+    refute round.valid?, "Missing presence validation for :name"
+  end
+
   test "score" do
-    assert_same @round.score, 20
+    assert_same round.score, 20
   end
 
   test "x_count" do
-    assert_same @round.x_count, 2
+    assert_same round.x_count, 2
   end
 
   test "average" do
-    shots = @round.round_ends.inject(0) {|sum, round| sum += round.size}
-    assert_in_delta @round.average, (20.to_f / shots), 0.01
+    shots = round.round_ends.inject(0) { |sum, re| sum += re.shots.size }
+    assert_in_delta round.average, (20.to_f / shots), 0.01
   end
 
   test "average_without_ends" do
@@ -33,15 +38,7 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   private
-  def setup
-    DatabaseCleaner.start
-    @round = Round.create(name: 'Test Round')
-    attrs = { round: @round, shots: [0,0,0,0,0,'x'], distance: 50, uom: 'yd' }
-    RoundEnd.create(attrs)
-    RoundEnd.create(attrs)
-  end
-
-  def teardown
-    DatabaseCleaner.clean
+  def round
+    rounds(:nfaa900)
   end
 end
