@@ -1,27 +1,20 @@
 class RoundEnd < ActiveRecord::Base
+  include ActiveModel::Validations
+
   belongs_to :round
 
-  before_validation :set_end_score, :set_end_x_count
+  validates :shots, max_shots_count: true
+  validates :distance, presence: true
+  validates :max_shots_count, presence: true
 
-  def self.end_size
-    6
-  end
+  after_validation :set_end_score, :set_end_x_count
 
-  enum uom: {
-    yd: 'yd',
-    m: 'm',
-    ft: 'ft'
-  }
-
-  validates :shots, length: { maximum: end_size } # End size must be defined before the validation can be called.
-  validates :distance, :uom, presence: true
-
-  def size
-    self.class.end_size
-  end
+  enum uom: { yd: 'yd',
+              m: 'm',
+              ft: 'ft' }
 
   def end_average
-    (score.to_f / self.class.end_size).round(2)
+    (score.to_f / max_shots_count).round(2)
   end
 
   def calculate_x_count
@@ -31,6 +24,7 @@ class RoundEnd < ActiveRecord::Base
   end
 
   def calculate_end_score(x_val = 10)
+    x_val = x_val.to_i
     shots.inject(0) do |sum, shot|
       shot_score = shot.downcase.eql?("x") ? x_val : shot.to_i
       sum += shot_score
