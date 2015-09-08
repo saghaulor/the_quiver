@@ -7,13 +7,17 @@ SimpleCov.start 'rails' do
 end
 
 ENV["RAILS_ENV"] = "test"
+
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
+require "minitest/reporters"
 
-require 'database_cleaner'
-
-DatabaseCleaner.strategy = :transaction
+Minitest::Reporters.use!(
+  Minitest::Reporters::DefaultReporter.new,
+  ENV,
+  Minitest.backtrace_filter
+)
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
 # require "minitest/rails/capybara"

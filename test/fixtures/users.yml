@@ -1,0 +1,10 @@
+---
+DEFAULTS: &DEFAULTS
+  created_at: '2015-09-01 05:01:02.31616'
+  updated_at: '2015-09-01 05:01:02.31616'
+
+saghaulor:
+  <<: *DEFAULTS
+  last_name: Aghaulor
+  first_name: Stephen
+  email: saghaulor@gmail.com

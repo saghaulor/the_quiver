@@ -1,0 +1,26 @@
+---
+DEFAULTS: &DEFAULTS
+  age_division: adult
+  created_at: '2015-08-31 04:51:12'
+  updated_at: '2015-08-31 04:51:12'
+
+nfaa900:
+  <<: *DEFAULTS
+  user: saghaulor
+  name: "SFA NFAA 900"
+  category: BHFS
+  type: NFAA900 
+
+nfaa810:
+  <<: *DEFAULTS
+  user: saghaulor
+  name: "SFA NFAA 810"
+  category: FS
+  type:
+
+custom:
+  <<: *DEFAULTS
+  user: saghaulor
+  name: Custom
+  category: Primitive
+  type: 

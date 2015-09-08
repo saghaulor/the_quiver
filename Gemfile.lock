@@ -38,6 +38,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    ansi (1.5.0)
     arel (6.0.3)
     brakeman (3.0.5)
       erubis (~> 2.6)
@@ -57,7 +58,6 @@ GEM
       columnize (= 0.9.0)
     coderay (1.1.0)
     columnize (0.9.0)
-    database_cleaner (1.4.1)
     docile (1.1.5)
     erubis (2.7.0)
     fastercsv (1.5.5)
@@ -113,6 +113,11 @@ GEM
     minitest-rails (2.2.0)
       minitest (~> 5.7)
       railties (~> 4.1)
+    minitest-reporters (1.0.20)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     modware (0.1.2)
       its-it
       key_struct (~> 0.4)
@@ -170,6 +175,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.0)
     ruby-prof (0.15.8)
+    ruby-progressbar (1.7.5)
     ruby2ruby (2.1.4)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
@@ -218,7 +224,6 @@ DEPENDENCIES
   active_model_serializers (= 0.10.0.rc2)
   brakeman
   byebug
-  database_cleaner
   guard
   guard-brakeman
   guard-bundler-audit
@@ -226,6 +231,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   minitest-rails
+  minitest-reporters
   pg
   pry-byebug
   pry-rails

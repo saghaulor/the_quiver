@@ -1,0 +1,32 @@
+---
+DEFAULTS: &DEFAULTS
+  mulligan: f
+  uom: yd
+  max_shots_count: 6
+  created_at: '2015-08-31 04:51:12'
+  updated_at: '2015-08-31 04:51:12'
+
+nfaa900_round_end_001:
+  <<: *DEFAULTS
+  round: nfaa900
+  distance: 60
+  shots: <%= %w(0 x 0 0 0 0) %>
+  score: 10
+  x_count: 1
+
+nfaa900_round_end_002:
+  <<: *DEFAULTS
+  round: nfaa900
+  distance: 60
+  shots: <%= %w(0 x 0 0 0 0) %>
+  score: 10
+  x_count: 1
+
+custom_round_end_001:
+  <<: *DEFAULTS
+  round: custom
+  distance: 40
+  uom: m
+  shots: <%= %w(x 10 10 x 10 x) %>
+  score: 60
+  x_count: 3
