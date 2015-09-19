@@ -14,4 +14,6 @@ class UserTest < ActiveSupport::TestCase
   should allow_value('derp@derp.com').for :email
 
   should have_secure_password
+
+  should validate_length_of(:password).is_at_least(16)
 end
