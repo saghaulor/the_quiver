@@ -4,6 +4,19 @@ class UserTest < ActiveSupport::TestCase
   # Test relations
   should have_many :rounds
 
+  # Test attributes
+  should have_db_column :last_name
+
+  should have_db_column :first_name
+
+  should have_db_column :email
+
+  should have_db_column :password_digest
+
+  should have_db_column :gender
+
+  should define_enum_for :gender
+
   # Test validations
   should validate_uniqueness_of :email
 

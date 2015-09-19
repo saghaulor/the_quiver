@@ -41,6 +41,16 @@ CREATE TYPE age_division AS ENUM (
 
 
 --
+-- Name: gender; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE gender AS ENUM (
+    'male',
+    'female'
+);
+
+
+--
 -- Name: uom; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -99,13 +109,13 @@ ALTER SEQUENCE round_ends_id_seq OWNED BY round_ends.id;
 
 CREATE TABLE rounds (
     id integer NOT NULL,
+    type character varying,
     user_id integer,
     name character varying,
     category character varying,
+    age_division age_division DEFAULT 'adult'::age_division,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    type character varying,
-    age_division age_division DEFAULT 'adult'::age_division
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -145,6 +155,7 @@ CREATE TABLE users (
     id integer NOT NULL,
     last_name character varying,
     first_name character varying,
+    gender gender DEFAULT 'male'::gender,
     email character varying,
     password_digest bytea,
     created_at timestamp without time zone NOT NULL,
@@ -254,4 +265,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150306052348');
 INSERT INTO schema_migrations (version) VALUES ('20150812035028');
 
 INSERT INTO schema_migrations (version) VALUES ('20150812154733');
+
+INSERT INTO schema_migrations (version) VALUES ('20150919055429');
 
