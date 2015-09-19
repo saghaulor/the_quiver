@@ -1,18 +1,17 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "user_is_invalid_when_email_is_empty" do
-    user = User.new
-    refute user.valid?, "Missing presence validation for :email"
-  end
+  # Test relations
+  should have_many :rounds
 
-  test "user_is_invalid_when_email_is_not_unique" do
-    user = User.new(email: 'saghaulor@gmail.com')
-    refute user.valid?, "Missing uniqueness validation for :email"
-  end
+  # Test validations
+  should validate_uniqueness_of :email
 
-  test "user_is_invalid_when_email_is_not_correct_email_address_format" do
-    user = User.new(email: 'derp')
-    refute user.valid?, "Missing format validation for :email"
-  end
+  should validate_presence_of :email
+
+  should_not allow_value('derp').for :email
+
+  should allow_value('derp@derp.com').for :email
+
+  should have_secure_password
 end

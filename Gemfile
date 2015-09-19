@@ -1,23 +1,22 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2'
 gem 'rails-api'
 gem 'active_model_serializers', '0.10.0.rc2'
+
 # Use postgres as the database for Active Record
 gem 'pg'
 gem "schema_plus_enums"
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+# Authentication
+gem 'jwt'
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 gem 'puma'
 
@@ -31,6 +30,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'minitest-rails'
   gem 'minitest-reporters'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
   gem 'guard'
   gem 'guard-minitest'
   gem 'ruby-prof'
