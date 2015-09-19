@@ -4,6 +4,25 @@ class RoundEndTest < ActiveSupport::TestCase
   # Test relations
   should belong_to :round
 
+  # Test attributes
+  should have_db_column :round_id
+
+  should have_db_column :distance
+
+  should have_db_column :uom
+
+  should have_db_column :max_shots_count
+
+  should have_db_column :shots
+
+  should have_db_column :mulligan
+
+  should have_db_column :score
+
+  should have_db_column :x_count
+
+  should define_enum_for :uom
+
   # Test validations
   should validate_presence_of :distance
 
@@ -16,8 +35,6 @@ class RoundEndTest < ActiveSupport::TestCase
   end
 
   # Test methods
-  should define_enum_for :uom
-
   test "calculate_end_score" do
     assert_same round_end.calculate_end_score, 10
   end

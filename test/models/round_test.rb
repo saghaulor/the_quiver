@@ -6,12 +6,23 @@ class RoundTest < ActiveSupport::TestCase
 
   should belong_to :user
 
+  # Test attributes
+  should have_db_column :user_id
+
+  should have_db_column :type
+
+  should have_db_column :name
+
+  should have_db_column :category
+
+  should have_db_column :age_division
+
+  should define_enum_for :age_division
+
   # Test validations
   should validate_presence_of :name
 
   # Test methods
-  should define_enum_for :age_division
-
   test "score" do
     assert_same round.score, 20
   end
