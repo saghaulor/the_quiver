@@ -1,10 +1,13 @@
 require 'test_helper'
 
 class RoundEndTest < ActiveSupport::TestCase
-  test "round_end_is_invalid_when_distance_is_not_present" do
-    round_end = RoundEnd.new(shots: [0,0,0,0,0,'x'], max_shots_count: 6)
-    refute round_end.valid?, "Missing presence validation for :distance"
-  end
+  # Test relations
+  should belong_to :round
+
+  # Test validations
+  should validate_presence_of :distance
+
+  should validate_presence_of :max_shots_count
 
   test "round_end_is_invalid_when_shots_are_greater_than_max_shots_count" do
     round_end = RoundEnd.new(shots: [0,0,0,0,0,'x'], distance: 60, max_shots_count: 5)
@@ -12,11 +15,8 @@ class RoundEndTest < ActiveSupport::TestCase
     assert round_end.errors.include?(:shots), "Missing size comparison validation for :shots"
   end
 
-  test "round_end_is_invalid_when_max_shots_count_is_not_present" do
-    round_end = RoundEnd.new(shots: [0,0,0,0,0,'x'], distance: 60)
-    round_end.valid?
-    assert round_end.errors.include?(:max_shots_count), "Missing presence validation for :max_shots_count"
-  end
+  # Test methods
+  should define_enum_for :uom
 
   test "calculate_end_score" do
     assert_same round_end.calculate_end_score, 10

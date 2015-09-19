@@ -1,10 +1,16 @@
 require 'test_helper'
 
 class RoundTest < ActiveSupport::TestCase
-  test "round_is_invalid_when_name_is_missing" do
-    round = Round.new
-    refute round.valid?, "Missing presence validation for :name"
-  end
+  # Test relations
+  should have_many :round_ends
+
+  should belong_to :user
+
+  # Test validations
+  should validate_presence_of :name
+
+  # Test methods
+  should define_enum_for :age_division
 
   test "score" do
     assert_same round.score, 20
