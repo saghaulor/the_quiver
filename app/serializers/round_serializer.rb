@@ -1,3 +1,3 @@
 class RoundSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :age_division
+  attributes :id, :user_id, :name, :category, :age_division
 end

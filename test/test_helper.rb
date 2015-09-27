@@ -40,10 +40,22 @@ class ActiveSupport::TestCase
   end
 
   def request_headers
+    content_headers.merge(auth_headers)
+  end
+
+  def content_headers
     {
       "Accept" => "application/json",
       "Content-Type" => "application/json"
     }
+  end
+
+  def auth_headers
+    { :authorization => "Bearer #{jwt}" }
+  end
+
+  def jwt
+    JsonWebToken.encode(sub: User.first.id)
   end
   # Add more helper methods to be used by all tests here...
 end

@@ -2,7 +2,7 @@ require "test_helper"
 
 class RoundsTest < ActionDispatch::IntegrationTest
   test 'returns rounds' do
-    get '/api/v1/rounds'
+    get '/api/v1/rounds', nil, request_headers
     rounds = json(response.body)
     names = rounds.map { |round| round[:name] }
     assert_equal 200, response.status
@@ -10,7 +10,8 @@ class RoundsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns rounds filtered by name' do
-    get "/api/v1/rounds?name=#{round_1.name}"
+    request_params = { name: round_1.name }
+    get "/api/v1/rounds", request_params, request_headers
     rounds = json(response.body)
     names = rounds.map { |round| round[:name] }
     assert_equal 200, response.status
@@ -19,7 +20,8 @@ class RoundsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns rounds filtered by category' do
-    get "/api/v1/rounds?category=#{round_2.category}"
+    request_params = { category: round_2.category }
+    get "/api/v1/rounds", request_params, request_headers
     rounds = json(response.body)
     catgegories = rounds.map { |round| round[:category] }
     assert_equal 200, response.status
@@ -28,7 +30,8 @@ class RoundsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns rounds filtered by name and category' do
-    get "/api/v1/rounds?name=#{round_2.name}&category=#{round_2.category}"
+    request_params = { name: round_2.name, category: round_2.category }
+    get "/api/v1/rounds", request_params, request_headers
     rounds = json(response.body)
     round_ids = rounds.map { |round| round[:id] }
     assert_equal 200, response.status
@@ -37,7 +40,7 @@ class RoundsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns the rounds' do
-    get "/api/v1/rounds/#{round_1.id}"
+    get "/api/v1/rounds/#{round_1.id}", nil, request_headers
     round = json(response.body)
     assert_equal 200, response.status
     assert_equal round_1.id, round[:id]

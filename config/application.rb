@@ -33,5 +33,7 @@ module TheQuiver
       generate.assets false
       generate.view_specs false
     end
+
+    config.paths.add "#{Rails.root}/lib", eager_load: true, autoload: true
   end
 end

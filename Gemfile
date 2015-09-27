@@ -14,6 +14,9 @@ gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Service Objects
+gem 'simple_command'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -34,10 +37,16 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'guard-brakeman'
   gem 'ruby-prof'
   gem 'ruby_gntp'
   gem 'simplecov', require: false
-  gem 'brakeman'
-  gem 'guard-brakeman'
-  gem 'guard-bundler-audit'
+#  gem 'pronto'
+#  gem 'pronto-brakeman'
+#  gem 'pronto-flay'
+#  gem 'pronto-reek'
+#  gem 'pronto-rails_best_practices'
+#  gem 'fasterer'
+#  gem 'debride'
+#  gem 'ruby-lint'
 end

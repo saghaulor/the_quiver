@@ -5,19 +5,23 @@ module API
     class UsersControllerTest < ActionController::TestCase
       test "should get index" do
         request_params = {}
-        get :index, request_params, request_headers
+        get :index, request_params
         assert_response :success
       end
 
       test "should show the user" do
         request_params = { id: user.id }
-        get :show, request_params, request_headers
+        get :show, request_params
         assert_response :success
       end
 
       private
       def user
         @user ||= users(:saghaulor)
+      end
+
+      def setup
+        @request.headers.merge!(request_headers)
       end
     end
   end

@@ -2,7 +2,7 @@ require "test_helper"
 
 class RoundEndsTest < ActionDispatch::IntegrationTest
   test 'returns round_ends' do
-    get '/api/v1/ends'
+    get '/api/v1/ends', nil, request_headers
     round_ends = json(response.body)
     ids = round_ends.map { |re| re[:id] }
     assert_equal 200, response.status
@@ -10,7 +10,8 @@ class RoundEndsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns round_ends filtered by round_id' do
-    get "/api/v1/ends?round_id=#{round_end_1.round_id}"
+    request_params = { round_id: round_end_1.round_id }
+    get "/api/v1/ends", request_params, request_headers
     round_ends = json(response.body)
     round_ids = round_ends.map { |re| re[:round_id] }
     assert_equal 200, response.status
@@ -19,7 +20,8 @@ class RoundEndsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns round_ends filtered by uom' do
-    get "/api/v1/ends?uom=#{round_end_1.uom}"
+    request_params = { uom: round_end_1.uom }
+    get "/api/v1/ends", request_params, request_headers
     round_ends = json(response.body)
     uoms = round_ends.map { |re| re[:uom] }
     assert_equal 200, response.status
@@ -28,7 +30,8 @@ class RoundEndsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns round_ends filtered by distance' do
-    get "/api/v1/ends?distance=#{round_end_1.distance}"
+    request_params = { distance: round_end_1.distance }
+    get "/api/v1/ends", request_params, request_headers
     round_ends = json(response.body)
     distances = round_ends.map { |re| re[:distance] }
     assert_equal 200, response.status
@@ -37,9 +40,12 @@ class RoundEndsTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns round_ends filtered by round_id , distance, and uom' do
-    get "/api/v1/ends?round_id=#{round_end_2.round_id}&\
-                      distance=#{round_end_2.distance}&\
-                      uom=#{round_end_2.uom}"
+    request_params = {
+                      round_id: round_end_2.round_id,
+                      distance: round_end_2.distance,
+                      uom: round_end_2.uom
+                     }
+    get "/api/v1/ends", request_params, request_headers
     round_ends = json(response.body)
     round_end_ids = round_ends.map {|re| re[:id] }
     assert_equal 200, response.status
