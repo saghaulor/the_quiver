@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-  skip_before_action :authenticate
+  skip_before_action :authenticate#, only: :create # Shoulda-Matchers doesn't support only/except args
 
   def create
     command = PasswordAuthenticator.call(params[:email], params[:password])

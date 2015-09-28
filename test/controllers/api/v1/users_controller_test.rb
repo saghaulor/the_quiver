@@ -3,6 +3,8 @@ require "test_helper"
 module API
   module V1
     class UsersControllerTest < ActionController::TestCase
+      should use_before_action :authenticate
+
       test "should get index" do
         request_params = {}
         get :index, request_params
